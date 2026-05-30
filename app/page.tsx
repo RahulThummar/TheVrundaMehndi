@@ -20,8 +20,25 @@ export default function Home() {
     setSliderPosition(percentage);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDragging.current = true;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPosition(percentage);
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPosition(percentage);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -291,10 +308,13 @@ export default function Home() {
 
           {/* Interactive Before/After Image Slider Container */}
           <div
-            className="relative aspect-video w-full rounded-3xl overflow-hidden border border-matte-gold/25 shadow-[0_15px_40px_rgba(3,2,6,0.06)] cursor-ew-resize select-none"
+            className="relative aspect-video w-full rounded-3xl overflow-hidden border border-matte-gold/25 shadow-[0_15px_40px_rgba(3,2,6,0.06)] cursor-ew-resize select-none touch-none"
+            onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
+            onTouchEnd={() => (isDragging.current = false)}
+            onTouchCancel={() => (isDragging.current = false)}
             onMouseMove={handleMouseMove}
-            onMouseDown={() => (isDragging.current = true)}
+            onMouseDown={handleMouseDown}
             onMouseUp={() => (isDragging.current = false)}
             onMouseLeave={() => (isDragging.current = false)}
           >
@@ -306,16 +326,16 @@ export default function Home() {
               className="object-cover"
               sizes="(max-w-768px) 100vw, 800px"
             />
-            <div className="absolute bottom-6 right-6 bg-primary-text/80 backdrop-blur-md text-soft-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wider border border-matte-gold/30">
-              Matured Dark Stain (After 48 Hours) 🤎
-            </div>
 
             {/* Before Image (Fresh Green Paste) */}
             <div
               className="absolute inset-y-0 left-0 overflow-hidden"
               style={{ width: `${sliderPosition}%` }}
             >
-              <div className="absolute inset-y-0 left-0 w-[800px] h-[450px] max-w-none aspect-video">
+              <div 
+                className="absolute inset-y-0 left-0 h-full max-w-none aspect-video"
+                style={{ width: `${sliderPosition > 0 ? (100 / sliderPosition) * 100 : 100}%` }}
+              >
                 <Image
                   src="/stain_before.png"
                   alt="Fresh Green Henna Paste"
@@ -323,15 +343,23 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-w-768px) 100vw, 800px"
                 />
-                <div className="absolute bottom-6 left-6 bg-matte-gold/80 backdrop-blur-md text-primary-text px-4 py-1.5 rounded-full text-xs font-bold tracking-wider border border-white/30">
-                  Fresh Paste (Before) ✨
-                </div>
               </div>
+            </div>
+
+            {/* Floating Non-Clipping Corner Labels */}
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-20 bg-matte-gold/80 backdrop-blur-md text-primary-text px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wider border border-white/30 whitespace-nowrap pointer-events-none select-none">
+              <span className="hidden sm:inline">Fresh Paste (Before) ✨</span>
+              <span className="inline sm:hidden">Fresh Paste ✨</span>
+            </div>
+
+            <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 z-20 bg-primary-text/80 backdrop-blur-md text-soft-white px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wider border border-matte-gold/30 whitespace-nowrap pointer-events-none select-none">
+              <span className="hidden sm:inline">Matured Dark Stain (After 48 Hours) 🤎</span>
+              <span className="inline sm:hidden">Matured Stain 🤎</span>
             </div>
 
             {/* Slider Handle Line */}
             <div
-              className="absolute inset-y-0 w-1 bg-matte-gold shadow-lg"
+              className="absolute inset-y-0 w-1 bg-matte-gold shadow-lg z-30"
               style={{ left: `${sliderPosition}%` }}
             >
               {/* Slider Thumb Circle */}
