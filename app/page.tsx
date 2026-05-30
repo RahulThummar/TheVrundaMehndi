@@ -156,11 +156,11 @@ export default function Home() {
                 
                 {/* Gold Shimmer and Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-text/45 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-6 left-6 right-6 glass-panel border border-white/30 rounded-2xl p-4.5 text-soft-white">
-                  <span className="text-xs uppercase tracking-widest text-matte-gold font-bold flex items-center gap-1.5 mb-1">
+                <div className="absolute bottom-6 left-6 right-6 bg-[#030206]/75 backdrop-blur-md border border-white/10 rounded-2xl p-4.5 text-soft-white shadow-xl">
+                  <span className="text-xs uppercase tracking-widest text-matte-gold font-extrabold flex items-center gap-1.5 mb-1.5">
                     <Sparkles className="w-3.5 h-3.5" /> Featured Royal Signature
                   </span>
-                  <p className="font-display text-lg font-bold leading-tight">Bridal Storytelling Hands</p>
+                  <p className="font-display text-lg font-bold leading-tight text-white">Bridal Storytelling Hands</p>
                 </div>
               </div>
             </motion.div>
