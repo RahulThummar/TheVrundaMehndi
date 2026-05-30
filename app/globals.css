@@ -93,6 +93,21 @@ body {
   animation: goldShimmer 3s infinite linear;
 }
 
+.text-shimmer-gold {
+  background: linear-gradient(
+    120deg,
+    #a9884b 0%,
+    #dfc694 25%,
+    #c7a86b 50%,
+    #dfc694 75%,
+    #a9884b 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s linear infinite;
+}
+
 /* Particle animation */
 @keyframes float {
 

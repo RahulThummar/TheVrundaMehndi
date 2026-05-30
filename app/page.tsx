@@ -10,6 +10,34 @@ import baseLogo from "../public/baseLogo.png";
 export default function Home() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const isDragging = useRef(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHoveredHero, setIsHoveredHero] = useState(false);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleHeroCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    // Maximum tilt of 8 degrees
+    setRotateX(-y / (box.height / 2) * 8);
+    setRotateY(x / (box.width / 2) * 8);
+  };
+
+  const handleHeroCardMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging.current) return;
@@ -65,9 +93,24 @@ export default function Home() {
   return (
     <main className="flex-1 overflow-x-hidden">
       {/* Cinematic Hero Section */}
-      <section className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-20 px-6 overflow-hidden">
+      <section 
+        className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-20 px-6 overflow-hidden"
+        onMouseMove={handleHeroMouseMove}
+        onMouseEnter={() => setIsHoveredHero(true)}
+        onMouseLeave={() => setIsHoveredHero(false)}
+      >
         {/* Soft Lavender & Beige Pastel Gradient Background */}
         <div className="absolute inset-0 bg-luxury-gradient z-0" />
+        
+        {/* Mouse Tracking Luxury Gold Ambient Glow */}
+        {isHoveredHero && (
+          <div
+            className="absolute inset-0 pointer-events-none z-[2] transition-opacity duration-500"
+            style={{
+              background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(199, 168, 107, 0.08), transparent 80%)`
+            }}
+          />
+        )}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-matte-gold/5 blur-3xl pointer-events-none" />
 
         {/* Floating Gold Particles Dust Effect */}
@@ -98,7 +141,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.15 }}
             >
               Luxury Bridal <br />
-              <span className="font-serif italic font-normal text-matte-gold pr-2">Mehndi in Surat</span>
+              <span className="font-serif italic font-bold text-shimmer-gold pr-2">Mehndi in Surat</span>
             </motion.h1>
 
             <motion.p
@@ -137,12 +180,17 @@ export default function Home() {
           </div>
 
           {/* Hero Portrait Display */}
-          <div className="lg:col-span-6 flex justify-center items-center">
+          <div className="lg:col-span-6 flex justify-center items-center relative" style={{ perspective: 1000 }}>
+            {/* Ambient Pulsating Gold Backdrop Glow */}
+            <div className="absolute w-[80%] h-[80%] rounded-full bg-matte-gold/15 blur-[120px] animate-pulse pointer-events-none z-0" />
             <motion.div
-              className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden border border-matte-gold/20 shadow-[0_15px_45px_rgba(3,2,6,0.08)] bg-soft-white/60 p-4"
+              className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden border border-matte-gold/20 shadow-[0_15px_45px_rgba(3,2,6,0.08)] bg-soft-white/60 p-4 cursor-pointer z-10"
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              animate={{ opacity: 1, scale: 1, rotateX, rotateY }}
+              onMouseMove={handleHeroCardMouseMove}
+              onMouseLeave={handleHeroCardMouseLeave}
+              style={{ transformStyle: "preserve-3d" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden">
                 <Image
@@ -185,11 +233,12 @@ export default function Home() {
             {portfolioItems.map((item, idx) => (
               <motion.div
                 key={idx}
-                className="group relative rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(3,2,6,0.03)] border border-matte-gold/15 bg-neutral-900/5 aspect-[4/5] cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(3,2,6,0.04)] border border-matte-gold/15 bg-neutral-900/5 aspect-[4/5] cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 40px rgba(199, 168, 107, 0.12)", border: "1px solid rgba(199, 168, 107, 0.4)" }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
               >
                 <Image
                   src={item.src}
@@ -237,11 +286,12 @@ export default function Home() {
             {services.map((service, idx) => (
               <motion.div
                 key={idx}
-                className="glass-panel rounded-3xl overflow-hidden border border-white/60 p-5 space-y-4 hover:border-matte-gold/30 hover:-translate-y-1.5 transition-all duration-300 group shadow-md"
+                className="glass-panel rounded-3xl overflow-hidden border border-white/60 p-5 space-y-4 group shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                whileHover={{ y: -10, scale: 1.02, boxShadow: "0 20px 40px rgba(199, 168, 107, 0.08)", borderColor: "rgba(199, 168, 107, 0.4)" }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
               >
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-matte-gold/10">
                   <Image
@@ -350,8 +400,10 @@ export default function Home() {
               style={{ left: `${sliderPosition}%` }}
             >
               {/* Slider Thumb Circle */}
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-primary-text border border-matte-gold flex items-center justify-center text-matte-gold shadow-xl">
-                ↔️
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-[#030206] border-2 border-matte-gold flex items-center justify-center shadow-[0_0_20px_rgba(199,168,107,0.4)] transition-transform duration-300 hover:scale-110 active:scale-95 group">
+                <svg className="w-5 h-5 text-matte-gold transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7l-5 5m0 0l5 5m-5-5h18m-5-5l5 5m0 0l-5 5" />
+                </svg>
               </div>
             </div>
           </div>
