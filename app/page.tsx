@@ -46,17 +46,17 @@ export default function Home() {
   };
 
   const portfolioItems = [
-    { src: "/bridal_hero.png", title: "Royal Rajkumari Bridal", category: "Bridal", tag: "Signature" },
+    { src: "/images/portfolio/bridal/2.png", title: "Royal Rajkumari Bridal", category: "Bridal", tag: "Signature" },
     { src: "/arabic_mehndi.png", title: "Intricate Arabic Vine", category: "Arabic", tag: "Modern" },
+    { src: "/images/portfolio/arabic/1.png", title: "Minimalist Lotus Mandala", category: "Minimal", tag: "Trendy" },
     { src: "/minimalist_mehndi.png", title: "Minimalist Lotus Mandala", category: "Minimal", tag: "Trendy" },
-    { src: "/bridal_hero.png", title: "Classic Gujarati Bridal", category: "Bridal", tag: "Classic" },
   ];
 
   const services = [
-    { title: "Bridal Mehndi", desc: "Intricate royal wedding motifs covering hands and arms with storytelling details.", price: "₹2,999+", img: "/bridal_hero.png" },
-    { title: "Arabic Fusion", desc: "Bold, modern fluid lines blended with elegant geometric spaces.", price: "₹299+", img: "/arabic_mehndi.png" },
-    { title: "Minimalist Mandala", desc: "Chic, contemporary elements centered around geometric patterns.", price: "₹499+", img: "/minimalist_mehndi.png" },
-    { title: "Premium Mehndi Cones", desc: "100% organic, triple-sifted chemical-free henna cones for dark stains.", price: "₹15", img: "/stain_after.png" },
+    { title: "Bridal Mehndi", desc: "Intricate royal wedding motifs covering hands and arms with storytelling details.", price: "₹2,999+", img: "/images/portfolio/bridal/3.png" },
+    { title: "Arabic Fusion", desc: "Bold, modern fluid lines blended with elegant geometric spaces.", price: "₹299+", img: "/images/portfolio/arabic/5.png" },
+    { title: "Minimalist Mandala", desc: "Chic, contemporary elements centered around geometric patterns.", price: "₹99+", img: "/images/portfolio/minimal/2.png" },
+    { title: "Premium Mehndi Cones", desc: "100% organic, triple-sifted chemical-free henna cones for dark stains.", price: "₹15", img: "/cons.png" },
   ];
 
 
