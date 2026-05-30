@@ -7,12 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn } from "lucide-react";
 
 const BRIDAL_IMAGES = [
-  { id: 1, src: "/images/portfolio/bridal/1.png", title: "Royal Maharaja Signature", desc: "Intricate portrait motifs tracing deep traditional roots." },
-  { id: 2, src: "/images/portfolio/bridal/2.png", title: "Rich Mahogany Cuff", desc: "Symmetrical floral patterns highlighting the wrist cuff." },
-  { id: 3, src: "/images/portfolio/bridal/3.png", title: "Royal Rajasthani Masterpiece", desc: "Exquisite peacock, elephant, and symmetrical grid story details." },
-  { id: 4, src: "/images/portfolio/bridal/4.png", title: "Luxe Floral Mesh", desc: "Premium close-up featuring intricate mandala motifs on the forearm." },
-  { id: 5, src: "/images/portfolio/bridal/1.png", title: "Classic Gujarati Bridal", desc: "Symmetrical checks, peacock and elephant story details." },
-  { id: 6, src: "/images/portfolio/bridal/5.png", title: "Symmetrical Stain Reveal", desc: "Triple-sifted organic formulation before maturation stain check." },
+  { id: 1, src: "/images/portfolio/bridal/1.png" },
+  { id: 2, src: "/images/portfolio/bridal/2.png" },
+  { id: 3, src: "/images/portfolio/bridal/3.png" },
+  { id: 4, src: "/images/portfolio/bridal/4.png" },
+  { id: 5, src: "/images/portfolio/bridal/5.png" },
+  { id: 6, src: "/images/portfolio/bridal/6.png" },
+  { id: 7, src: "/images/portfolio/bridal/7.png" },
 ];
 
 export default function BridalPortfolio() {
@@ -56,7 +57,7 @@ export default function BridalPortfolio() {
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src={img.src}
-                  alt={img.title}
+                  alt={`Bridal Mehndi Design ${img.id}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.2s]"
                   sizes="(max-w-768px) 100vw, 400px"
@@ -64,13 +65,6 @@ export default function BridalPortfolio() {
                 <div className="absolute inset-0 bg-primary-text/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <ZoomIn className="w-10 h-10 text-white" />
                 </div>
-              </div>
-
-              <div className="p-3.5 space-y-1">
-                <h3 className="font-display text-lg font-bold text-primary-text leading-tight group-hover:text-matte-gold transition-colors">
-                  {img.title}
-                </h3>
-                <p className="text-xs text-primary-text/60 leading-relaxed font-sans">{img.desc}</p>
               </div>
             </motion.div>
           ))}

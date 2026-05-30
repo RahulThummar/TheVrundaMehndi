@@ -7,12 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn } from "lucide-react";
 
 const ARABIC_IMAGES = [
-  { id: 1, src: "/images/portfolio/arabic/1.png", title: "Royal Geometric Cuff", desc: "Intricate Arabic motif featuring negative spacing and elegant wrist grids." },
-  { id: 2, src: "/images/portfolio/arabic/2.png", title: "Modern Floral Arabesque", desc: "Premium wedding editorial showcasing detailed flora silhouettes." },
-  { id: 3, src: "/images/portfolio/arabic/3.png", title: "Delicate Arabic Vine", desc: "Elegant flowing vine work extending diagonally from fingers to wrists." },
-  { id: 4, src: "/images/portfolio/arabic/1.png", title: "Classic Silhouette Mandala", desc: "Symmetrical floral spacing blended with bold henna lines." },
-  { id: 5, src: "/images/portfolio/arabic/2.png", title: "Lace Embroidery Fusion", desc: "Delicate web-like textures wrapping around palms like bridal lace." },
-  { id: 6, src: "/images/portfolio/arabic/3.png", title: "Contemporary Geometric Flow", desc: "Clean modern geometric patterns layered with traditional micro-shading." },
+  { id: 1, src: "/images/portfolio/arabic/1.png" },
+  { id: 2, src: "/images/portfolio/arabic/2.png" },
+  { id: 3, src: "/images/portfolio/arabic/3.png" },
+  { id: 4, src: "/images/portfolio/arabic/4.png" },
+  { id: 5, src: "/images/portfolio/arabic/5.png" },
+  { id: 6, src: "/images/portfolio/arabic/6.png" },
+  { id: 7, src: "/images/portfolio/arabic/7.png" },
+  { id: 8, src: "/images/portfolio/arabic/8.png" },
+  { id: 9, src: "/images/portfolio/arabic/9.png" },
 ];
 
 export default function ArabicPortfolio() {
@@ -56,7 +59,7 @@ export default function ArabicPortfolio() {
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src={img.src}
-                  alt={img.title}
+                  alt={`Arabic Mehndi Design ${img.id}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.2s]"
                   sizes="(max-w-768px) 100vw, 400px"
@@ -64,13 +67,6 @@ export default function ArabicPortfolio() {
                 <div className="absolute inset-0 bg-primary-text/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <ZoomIn className="w-10 h-10 text-white" />
                 </div>
-              </div>
-
-              <div className="p-3.5 space-y-1">
-                <h3 className="font-display text-lg font-bold text-primary-text leading-tight group-hover:text-matte-gold transition-colors">
-                  {img.title}
-                </h3>
-                <p className="text-xs text-primary-text/60 leading-relaxed font-sans">{img.desc}</p>
               </div>
             </motion.div>
           ))}

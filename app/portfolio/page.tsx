@@ -7,19 +7,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn, Calendar } from "lucide-react";
 
 const PORTFOLIO_IMAGES = [
-  { id: 1, src: "/images/portfolio/bridal/1.png", title: "Royal Maharaja Signature", category: "bridal", tag: "Signature Bridal" },
-  { id: 2, src: "/images/portfolio/arabic/1.png", title: "Royal Geometric Cuff", category: "arabic", tag: "Contemporary Arabic" },
-  { id: 3, src: "/images/portfolio/minimal/1.png", title: "Graceful Lotus Mandala", category: "minimal", tag: "Minimal Mandala" },
-  { id: 4, src: "/images/portfolio/bridal/2.png", title: "Matured Mahogany Hand", category: "bridal", tag: "Bridal Stain" },
-  { id: 5, src: "/images/portfolio/arabic/2.png", title: "Modern Floral Arabesque", category: "arabic", tag: "Contemporary Arabic" },
-  { id: 6, src: "/images/portfolio/minimal/2.png", title: "Modern Boho Bands", category: "minimal", tag: "Boho Minimal" },
-  { id: 7, src: "/images/portfolio/bridal/3.png", title: "Royal Rajasthani Masterpiece", category: "bridal", tag: "Traditional Bridal" },
-  { id: 8, src: "/images/portfolio/bridal/4.png", title: "Luxe Floral Mesh", category: "bridal", tag: "Exclusive Bridal" },
-  { id: 9, src: "/images/portfolio/arabic/3.png", title: "Minimalist Arabic Vine", category: "arabic", tag: "Minimal Arabic" },
-  { id: 10, src: "/images/portfolio/minimal/3.png", title: "Symmetrical Ring Mandala", category: "minimal", tag: "Delicate Minimal" },
-  { id: 11, src: "/images/portfolio/arabic/1.png", title: "Classic Silhouette Mandala", category: "arabic", tag: "Luxe Arabic" },
-  { id: 12, src: "/images/portfolio/minimal/1.png", title: "Clean Petal Clusters", category: "minimal", tag: "Delicate Minimal" },
+  { id: 1, src: "/images/portfolio/bridal/1.png", category: "bridal" },
+  { id: 2, src: "/images/portfolio/arabic/1.png", category: "arabic" },
+  { id: 3, src: "/images/portfolio/minimal/1.png", category: "minimal" },
+  { id: 4, src: "/images/portfolio/bridal/2.png", category: "bridal" },
+  { id: 5, src: "/images/portfolio/arabic/2.png", category: "arabic" },
+  { id: 6, src: "/images/portfolio/minimal/2.png", category: "minimal" },
+  { id: 7, src: "/images/portfolio/bridal/3.png", category: "bridal" },
+  { id: 8, src: "/images/portfolio/bridal/4.png", category: "bridal" },
+  { id: 9, src: "/images/portfolio/arabic/3.png", category: "arabic" },
+  { id: 10, src: "/images/portfolio/minimal/3.png", category: "minimal" },
+  { id: 11, src: "/images/portfolio/arabic/1.png", category: "arabic" },
+  { id: 12, src: "/images/portfolio/minimal/1.png", category: "minimal" },
 ];
+
+const CATEGORY_TAGS: Record<string, string> = {
+  bridal: "Signature Bridal",
+  arabic: "Contemporary Arabic",
+  minimal: "Minimalist Chic",
+};
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("all");
@@ -83,7 +89,7 @@ export default function Portfolio() {
                 <div className="relative w-full rounded-2xl overflow-hidden">
                   <img
                     src={img.src}
-                    alt={img.title}
+                    alt={`Mehndi Design - ${CATEGORY_TAGS[img.category] || img.category}`}
                     className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-primary-text/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -93,11 +99,8 @@ export default function Portfolio() {
 
                 <div className="p-3.5 space-y-1">
                   <span className="text-[9px] uppercase tracking-widest text-matte-gold font-bold">
-                    {img.tag}
+                    {CATEGORY_TAGS[img.category] || img.category}
                   </span>
-                  <h3 className="font-display text-base font-bold text-primary-text leading-tight">
-                    {img.title}
-                  </h3>
                 </div>
               </motion.div>
             ))}

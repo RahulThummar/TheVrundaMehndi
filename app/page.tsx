@@ -60,11 +60,7 @@ export default function Home() {
   ];
 
 
-  const testimonials = [
-    { quote: "The stain matured into a breathtaking deep espresso brown! My wedding guests were absolutely awestruck by the intricate storytelling detail.", author: "Aanya Mehta", role: "Surat Bride" },
-    { quote: "Highly professional and extremely patient. She worked like a true artist, crafting a Pinterest-perfect layout for my big day.", author: "Riddhi Shah", role: "Navsari Bride" },
-    { quote: "The organic cones have such an amazing scent and the stain color is absolutely spectacular. Best bridal mehndi experience ever!", author: "Komal Patel", role: "Surat Bride" },
-  ];
+
 
   return (
     <main className="flex-1 overflow-x-hidden">
@@ -371,41 +367,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Floating Testimonials Slider */}
-      <section className="py-24 bg-luxury-gradient overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center space-y-4 mb-16">
-            <span className="text-xs uppercase tracking-[0.2em] font-bold text-matte-gold">
-              Bridal Reviews
-            </span>
-            <h2 className="font-display text-3xl sm:text-4.5xl font-extrabold text-primary-text">
-              Atelier Love Letters
-            </h2>
-          </div>
 
-          <div className="flex gap-6 overflow-x-auto pb-8 pt-2 px-2 no-scrollbar snap-x snap-mandatory">
-            {testimonials.map((test, idx) => (
-              <div
-                key={idx}
-                className="min-w-[280px] sm:min-w-[380px] snap-center glass-panel border border-white/60 p-8 rounded-3xl space-y-6 flex flex-col justify-between shadow-md"
-              >
-                <p className="font-serif text-sm sm:text-base italic text-primary-text/80 leading-relaxed">
-                  "{test.quote}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-matte-gold/10 border border-matte-gold/30 flex items-center justify-center font-bold text-matte-gold text-sm uppercase">
-                    {test.author[0]}
-                  </div>
-                  <div>
-                    <h4 className="font-display text-sm font-bold text-primary-text">{test.author}</h4>
-                    <p className="text-[10px] uppercase tracking-wider text-matte-gold font-bold">{test.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* Luxury Final CTA Booking Section */}

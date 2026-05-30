@@ -7,10 +7,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn } from "lucide-react";
 
 const MINIMAL_IMAGES = [
-  { id: 1, src: "/images/portfolio/minimal/1.png", title: "Graceful Lotus Mandala", desc: "Symmetrical lotus patterns beautifully isolated in the center of the palm." },
-  { id: 2, src: "/images/portfolio/minimal/2.png", title: "Modern Boho Bands", desc: "Boho-chic wrist bands combined with clean geometric finger designs." },
-  { id: 3, src: "/images/portfolio/minimal/3.png", title: "Symmetrical Ring Mandala", desc: "Isolated finger bands and minimalist central wrist cuffs." },
-  { id: 4, src: "/images/portfolio/minimal/4.png", title: "Clean Petal Clusters", desc: "Elegant floral negative spaces framing minimalist hand borders." },
+  { id: 1, src: "/images/portfolio/minimal/1.png" },
+  { id: 2, src: "/images/portfolio/minimal/2.png" },
+  { id: 3, src: "/images/portfolio/minimal/3.png" },
+  { id: 4, src: "/images/portfolio/minimal/4.png" },
+  { id: 5, src: "/images/portfolio/minimal/5.png" },
+  { id: 6, src: "/images/portfolio/minimal/6.png" },
+  { id: 7, src: "/images/portfolio/minimal/7.png" },
+  { id: 8, src: "/images/portfolio/minimal/8.png" },
+  { id: 9, src: "/images/portfolio/minimal/9.png" },
+  { id: 10, src: "/images/portfolio/minimal/10.png" },
+  
+
 ];
 
 export default function MinimalPortfolio() {
@@ -54,7 +62,7 @@ export default function MinimalPortfolio() {
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src={img.src}
-                  alt={img.title}
+                  alt={`Minimalist Mehndi Design ${img.id}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.2s]"
                   sizes="(max-w-768px) 100vw, 400px"
@@ -62,13 +70,6 @@ export default function MinimalPortfolio() {
                 <div className="absolute inset-0 bg-primary-text/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <ZoomIn className="w-10 h-10 text-white" />
                 </div>
-              </div>
-
-              <div className="p-3.5 space-y-1">
-                <h3 className="font-display text-lg font-bold text-primary-text leading-tight group-hover:text-matte-gold transition-colors">
-                  {img.title}
-                </h3>
-                <p className="text-xs text-primary-text/60 leading-relaxed font-sans">{img.desc}</p>
               </div>
             </motion.div>
           ))}
