@@ -171,22 +171,13 @@ export default function Home() {
       {/* Featured Portfolio Section */}
       <section className="py-24 bg-soft-white/60 relative">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div className="space-y-3">
-              <span className="text-xs uppercase tracking-[0.2em] font-bold text-matte-gold">
-                The Master Gallery
-              </span>
-              <h2 className="font-display text-3xl sm:text-4.5xl font-extrabold text-primary-text">
-                Featured Artistry
-              </h2>
-            </div>
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-bold text-primary-text hover:text-matte-gold transition-colors group"
-            >
-              Explore Full Gallery
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+          <div className="mb-12 space-y-3">
+            <span className="text-xs uppercase tracking-[0.2em] font-bold text-matte-gold">
+              The Master Gallery
+            </span>
+            <h2 className="font-display text-3xl sm:text-4.5xl font-extrabold text-primary-text">
+              Featured Artistry
+            </h2>
           </div>
 
           {/* Pinterest-inspired Masonry/Grid Layout */}

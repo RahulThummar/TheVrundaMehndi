@@ -13,11 +13,12 @@ const NAV_LINKS = [
   { label: "About Story", href: "/about" },
   {
     label: "Portfolio",
-    href: "/portfolio",
+    href: "#",
     submenu: [
       { label: "Bridal Masterpieces", href: "/portfolio/bridal", desc: "Exquisite royal traditional designs" },
       { label: "Arabic Fusion", href: "/portfolio/arabic", desc: "Contemporary bold & flowing patterns" },
       { label: "Minimalist Chic", href: "/portfolio/minimal", desc: "Modern delicate and elegant lines" },
+      { label: "Completed Client Work", href: "/portfolio/completed", desc: "Real recent client masterpieces" },
     ],
   },
   { label: "Artistry & Services", href: "/services" },
@@ -171,12 +172,6 @@ export default function Navbar() {
                                 )}
                               </Link>
                             ))}
-                          </div>
-                          <div className="mt-3 pt-2.5 border-t border-matte-gold/10 px-2 flex justify-between items-center text-[10px] font-semibold text-primary-text/60 hover:text-matte-gold transition-colors">
-                            <Link href="/portfolio" className="flex items-center gap-1 w-full">
-                              <span>Explore Full Portfolio</span>
-                              <span className="ml-auto">→</span>
-                            </Link>
                           </div>
                         </motion.div>
                       )}

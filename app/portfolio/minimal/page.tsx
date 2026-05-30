@@ -28,9 +28,8 @@ export default function MinimalPortfolio() {
     <main className="flex-1 bg-luxury-gradient pt-32 pb-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Navigation Breadcrumb */}
         <div className="flex gap-2 text-xs font-semibold uppercase tracking-wider text-primary-text/60">
-          <Link href="/portfolio" className="hover:text-matte-gold transition-colors">Portfolio</Link>
+          <span>Portfolio</span>
           <span>/</span>
           <span className="text-matte-gold">Minimalist Chic</span>
         </div>

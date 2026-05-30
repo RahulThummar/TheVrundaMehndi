@@ -6,44 +6,40 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn } from "lucide-react";
 
-const BRIDAL_IMAGES = [
-  { id: 1, src: "/images/portfolio/bridal/1.png" },
-  { id: 2, src: "/images/portfolio/bridal/2.png" },
-  { id: 3, src: "/images/portfolio/bridal/3.png" },
-  { id: 4, src: "/images/portfolio/bridal/4.png" },
-  { id: 5, src: "/images/portfolio/bridal/5.png" },
-  { id: 6, src: "/images/portfolio/bridal/6.png" },
-  { id: 7, src: "/images/portfolio/bridal/7.png" },
+const COMPLETED_IMAGES = [
+  { id: 2, src: "/images/portfolio/completed/2.png" },
+  { id: 3, src: "/images/portfolio/completed/3.png" },
+  { id: 4, src: "/images/portfolio/completed/4.png" },
 ];
 
-export default function BridalPortfolio() {
+export default function CompletedPortfolio() {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   return (
     <main className="flex-1 bg-luxury-gradient pt-32 pb-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
-        
+
         <div className="flex gap-2 text-xs font-semibold uppercase tracking-wider text-primary-text/60">
           <span>Portfolio</span>
           <span>/</span>
-          <span className="text-matte-gold">Bridal Masterpieces</span>
+          <span className="text-matte-gold">Completed Client Work</span>
         </div>
 
         <div className="space-y-4">
           <span className="text-xs uppercase tracking-[0.25em] font-extrabold text-matte-gold block">
-            Signature Collection
+            Real Masterpieces
           </span>
           <h1 className="font-display text-4xl sm:text-5.5xl font-extrabold text-primary-text leading-tight">
-            Bridal Masterpieces
+            Completed Client Work
           </h1>
           <p className="font-serif text-sm sm:text-base text-primary-text/75 max-w-xl">
-            Symphonies of intricate patterns, elegant portraits, and royal symbols. Designed to tell your unique love story across hands and arms.
+            A beautiful curated showcase of our recent, fully matured organic henna applications on our lovely brides and clients. Real stains, real celebrations.
           </p>
         </div>
 
-        {/* Gallery */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {BRIDAL_IMAGES.map((img) => (
+          {COMPLETED_IMAGES.map((img) => (
             <motion.div
               key={img.id}
               className="relative rounded-3xl overflow-hidden border border-matte-gold/15 group shadow-sm bg-soft-white/60 p-3 hover:border-matte-gold/30 hover:shadow-md transition-all duration-300 cursor-pointer"
@@ -56,7 +52,7 @@ export default function BridalPortfolio() {
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src={img.src}
-                  alt={`Bridal Mehndi Design ${img.id}`}
+                  alt={`Completed Client Henna Design ${img.id}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.2s]"
                   sizes="(max-w-768px) 100vw, 400px"
@@ -70,7 +66,7 @@ export default function BridalPortfolio() {
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox Dialog */}
       <AnimatePresence>
         {lightboxImg && (
           <motion.div
@@ -95,7 +91,7 @@ export default function BridalPortfolio() {
             >
               <Image
                 src={lightboxImg}
-                alt="Enlarged Henna Art"
+                alt="Enlarged Completed Henna Art"
                 fill
                 className="object-contain"
                 sizes="800px"
