@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Sparkles, Calendar, ArrowRight, Instagram, Phone, MessageSquare, ChevronRight, Award, Flame, UserCheck } from "lucide-react";
 import baseLogo from "../public/baseLogo.png";
 
@@ -14,6 +14,45 @@ export default function Home() {
   const [isHoveredHero, setIsHoveredHero] = useState(false);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  
+  const [quizStep, setQuizStep] = useState(1);
+  const [quizAnswers, setQuizAnswers] = useState({ role: "", style: "" });
+
+  const getRecommendation = () => {
+    if (quizAnswers.role === "bride" && quizAnswers.style === "bridal") {
+      return {
+        title: "Royal Bridal Signature Package",
+        price: "₹2,999+",
+        desc: "Our ultimate crown jewel bridal masterpiece. Intricate storytelling portraits, custom symmetrical motifs, secondary artist for relatives, and premium organic aftercare.",
+        features: ["Custom Couple Portraits", "Full Front & Back Arms Coverage", "Premium Organic Henna Cones", "Secondary Artist Included", "Free Stain Aftercare Oil"],
+        waText: "Hello! I took your style quiz and got the Royal Bridal Signature Package recommendation. I'd love to book a bridal consultation!"
+      };
+    } else if (quizAnswers.role === "bride") {
+      return {
+        title: "Modern Arabic Bridal Fusion",
+        price: "₹1,499+",
+        desc: "A beautiful combination of traditional royal density and bold contemporary flowing Arabic layouts. Ideal for the modern elegant bride.",
+        features: ["Contemporary Bold Outlines", "Thick & Thin Line Symmetry", "Chemical-Free Organic Paste", "Includes Free Aftercare Spray"],
+        waText: "Hello! I took your style quiz and got the Modern Arabic Bridal Fusion recommendation. I'd love to check availability!"
+      };
+    } else if (quizAnswers.style === "minimal") {
+      return {
+        title: "Minimalist Chic Mandala",
+        price: "₹499+",
+        desc: "Chic, contemporary elements centered around geometric mandala symmetry. Extremely elegant and beautiful for intimate events.",
+        features: ["Symmetrical Hand Mandalas", "Clean Delicate Finger Lines", "100% Skin-Safe Organic Henna", "Quick Dry Secret Formula"],
+        waText: "Hello! I took your style quiz and got the Minimalist Chic Mandala recommendation. I'd love to book a session!"
+      };
+    } else {
+      return {
+        title: "Arabic Fusion Outlines",
+        price: "₹299+",
+        desc: "Bold, modern fluid lines blended with elegant negative space patterns. Perfect for wedding guests and celebratory gatherings.",
+        features: ["Modern Flowing Vine Designs", "Bold Statement Details", "Approx. 15-20 Mins Application", "Rich Dark Stain Formulation"],
+        waText: "Hello! I took your style quiz and got the Arabic Fusion Outlines recommendation. I'd love to check slot availability!"
+      };
+    }
+  };
 
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -410,8 +449,189 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Luxury Bridal Style Recommender Quiz */}
+      <section className="py-24 bg-soft-white/60 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="text-center space-y-4 max-w-xl mx-auto mb-12">
+            <span className="text-xs uppercase tracking-[0.2em] font-bold text-matte-gold flex items-center justify-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 animate-pulse" /> Custom Curation
+            </span>
+            <h2 className="font-display text-3xl sm:text-4.5xl font-extrabold text-primary-text">
+              Find Your Perfect Mehndi Style ✨
+            </h2>
+            <p className="font-serif text-sm text-primary-text/75">
+              Take our 2-step luxury style recommender quiz to discover your personalized mehndi package and secure your priority booking slot.
+            </p>
+          </div>
 
+          <div className="glass-panel rounded-[2.5rem] p-8 sm:p-12 border border-white/60 shadow-xl relative min-h-[380px] flex flex-col justify-between">
+            <AnimatePresence mode="wait">
+              {quizStep === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-8 flex-1"
+                >
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-matte-gold">Step 1 of 2</span>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-primary-text">What is your role in the upcoming celebration?</h3>
+                  </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button
+                      onClick={() => {
+                        setQuizAnswers({ ...quizAnswers, role: "bride" });
+                        setQuizStep(2);
+                      }}
+                      className="p-6 rounded-2xl border border-matte-gold/20 hover:border-matte-gold bg-soft-white/80 hover:bg-soft-white transition-all text-left group shadow-sm flex flex-col justify-between aspect-video sm:aspect-square lg:aspect-video cursor-pointer hover:scale-[1.02]"
+                    >
+                      <span className="text-3xl">👑</span>
+                      <div>
+                        <h4 className="font-display text-base font-bold text-primary-text group-hover:text-matte-gold transition-colors">I am the Bride</h4>
+                        <p className="text-xs text-primary-text/60 mt-1">Looking for a premium, custom signature royal bridal application.</p>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setQuizAnswers({ ...quizAnswers, role: "guest" });
+                        setQuizStep(2);
+                      }}
+                      className="p-6 rounded-2xl border border-matte-gold/20 hover:border-matte-gold bg-soft-white/80 hover:bg-soft-white transition-all text-left group shadow-sm flex flex-col justify-between aspect-video sm:aspect-square lg:aspect-video cursor-pointer hover:scale-[1.02]"
+                    >
+                      <span className="text-3xl">✨</span>
+                      <div>
+                        <h4 className="font-display text-base font-bold text-primary-text group-hover:text-matte-gold transition-colors">I am a Guest / Relative</h4>
+                        <p className="text-xs text-primary-text/60 mt-1">Looking for modern, elegant designs for bridesmaids or family members.</p>
+                      </div>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {quizStep === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-8 flex-1"
+                >
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-matte-gold">Step 2 of 2</span>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-primary-text">What style density matches your dream layout?</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <button
+                      onClick={() => {
+                        setQuizAnswers({ ...quizAnswers, style: "bridal" });
+                        setQuizStep(3);
+                      }}
+                      className="p-5 rounded-2xl border border-matte-gold/20 hover:border-matte-gold bg-soft-white/80 hover:bg-soft-white transition-all text-left group shadow-sm flex flex-col justify-between min-h-[160px] cursor-pointer hover:scale-[1.02]"
+                    >
+                      <span className="text-2.5xl">🏰</span>
+                      <div>
+                        <h4 className="font-display text-sm font-bold text-primary-text group-hover:text-matte-gold transition-colors">Royal Portrait Density</h4>
+                        <p className="text-[11px] text-primary-text/60 mt-1">High-density custom figures & storytelling cuffs.</p>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setQuizAnswers({ ...quizAnswers, style: "arabic" });
+                        setQuizStep(3);
+                      }}
+                      className="p-5 rounded-2xl border border-matte-gold/20 hover:border-matte-gold bg-soft-white/80 hover:bg-soft-white transition-all text-left group shadow-sm flex flex-col justify-between min-h-[160px] cursor-pointer hover:scale-[1.02]"
+                    >
+                      <span className="text-2.5xl">🌿</span>
+                      <div>
+                        <h4 className="font-display text-sm font-bold text-primary-text group-hover:text-matte-gold transition-colors">Modern Arabic Fusion</h4>
+                        <p className="text-[11px] text-primary-text/60 mt-1">Bold flowing floral outlines and negative spaces.</p>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setQuizAnswers({ ...quizAnswers, style: "minimal" });
+                        setQuizStep(3);
+                      }}
+                      className="p-5 rounded-2xl border border-matte-gold/20 hover:border-matte-gold bg-soft-white/80 hover:bg-soft-white transition-all text-left group shadow-sm flex flex-col justify-between min-h-[160px] cursor-pointer hover:scale-[1.02]"
+                    >
+                      <span className="text-2.5xl">🌸</span>
+                      <div>
+                        <h4 className="font-display text-sm font-bold text-primary-text group-hover:text-matte-gold transition-colors">Minimalist Mandala</h4>
+                        <p className="text-[11px] text-primary-text/60 mt-1">Delicate symmetry centered around geometric clusters.</p>
+                      </div>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {quizStep === 3 && (
+                <motion.div
+                  key="step3"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="space-y-6 flex-1 flex flex-col justify-between"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div className="md:col-span-7 space-y-4">
+                      <div>
+                        <span className="text-[10px] uppercase tracking-widest text-matte-gold font-bold flex items-center gap-1">
+                          👑 Personalized Artistry Recommendation
+                        </span>
+                        <h3 className="font-display text-2xl sm:text-3.5xl font-extrabold text-primary-text mt-1.5 leading-tight">
+                          {getRecommendation().title}
+                        </h3>
+                        <p className="font-display text-xl sm:text-2xl font-bold text-matte-gold mt-1.5">{getRecommendation().price}</p>
+                      </div>
+                      <p className="text-xs sm:text-sm text-primary-text/75 leading-relaxed font-sans">
+                        {getRecommendation().desc}
+                      </p>
+                    </div>
+
+                    <div className="md:col-span-5 bg-soft-white/85 p-5 rounded-2xl border border-matte-gold/15 space-y-3.5">
+                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-primary-text/80">Package Inclusions:</h4>
+                      <ul className="space-y-2">
+                        {getRecommendation().features.map((feat, fIdx) => (
+                          <li key={fIdx} className="flex items-center gap-2 text-xs text-primary-text/75">
+                            <span className="text-matte-gold text-sm font-bold">✓</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-matte-gold/15 w-full">
+                    <a
+                      href={`https://wa.me/919157342233?text=${encodeURIComponent(getRecommendation().waText)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto px-8 py-4.5 rounded-full bg-gold-gradient text-[#030206] font-sans text-xs font-bold uppercase tracking-wider text-center shadow-md flex items-center justify-center gap-2 hover:scale-[1.03] transition-transform"
+                    >
+                      <MessageSquare className="w-4 h-4" /> Book Recommended Package
+                    </a>
+                    <button
+                      onClick={() => {
+                        setQuizStep(1);
+                        setQuizAnswers({ role: "", style: "" });
+                      }}
+                      className="w-full sm:w-auto px-6 py-4.5 rounded-full border border-matte-gold/30 hover:border-matte-gold text-primary-text text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 hover:bg-white/30 cursor-pointer"
+                    >
+                      <span>🔄 Take Quiz Again</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
 
       {/* Luxury Final CTA Booking Section */}
       <section className="py-24 bg-gradient-to-b from-soft-white/60 to-[#18161f] text-neutral-100 relative">

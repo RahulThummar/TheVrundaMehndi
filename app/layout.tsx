@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ScrollProgress from "@/components/ScrollProgress";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
 
 const inter = Inter({
@@ -241,9 +240,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-luxury-gradient text-primary-text font-sans antialiased flex flex-col relative pb-16 md:pb-0">
-        {/* Global Progress Indicator */}
-        <ScrollProgress />
-        
         {/* Main Transparent Navbar */}
         <Navbar />
 

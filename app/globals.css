@@ -164,3 +164,44 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Premium Luxury Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f7fb;
+  border-left: 1px solid rgba(199, 168, 107, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #dfc694 0%, #c7a86b 100%);
+  border: 2px solid #f8f7fb;
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a9884b;
+}
+
+/* Customized Selection Highlight */
+::selection {
+  background-color: rgba(199, 168, 107, 0.25);
+  color: #030206;
+}
+
+/* Smooth Focus Ring */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #c7a86b !important;
+  box-shadow: 0 0 12px rgba(199, 168, 107, 0.25) !important;
+}
+
+/* Interactive Card Parallax Hover Glow */
+.hover-gold-glow:hover {
+  box-shadow: 0 15px 30px rgba(199, 168, 107, 0.2);
+  border-color: rgba(199, 168, 107, 0.45) ;
+  transform: translateY(-4px);
+}
