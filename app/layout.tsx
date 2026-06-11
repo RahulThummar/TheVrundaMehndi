@@ -81,6 +81,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://thevrundamehndi.vercel.app",
   },
+  verification: {
+    google: "NxGFHw46pBsYaat5fpgJ1rXIQFAbQ6P0Qw-wYvuH_Z4",
+  },
 };
 
 const localBusinessSchema = {
