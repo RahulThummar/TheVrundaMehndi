@@ -7,9 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ZoomIn } from "lucide-react";
 
 const COMPLETED_IMAGES = [
-  { id: 2, src: "/images/portfolio/completed/2.png" },
-  { id: 3, src: "/images/portfolio/completed/3.png" },
   { id: 4, src: "/images/portfolio/completed/4.png" },
+  { id: 3, src: "/images/portfolio/completed/3.png" },
+  { id: 2, src: "/images/portfolio/completed/2.png" },
+  { id: 1, src: "/images/portfolio/completed/1.png" },
 ];
 
 export default function CompletedPortfolio() {
