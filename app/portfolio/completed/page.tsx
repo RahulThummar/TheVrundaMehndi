@@ -55,7 +55,7 @@ export default function CompletedPortfolio() {
                   src={img.src}
                   alt={`Completed Client Henna Design ${img.id}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-[1.2s]"
+                  className="object-contain group-hover:scale-105 transition-transform duration-[1.2s]"
                   sizes="(max-w-768px) 100vw, 400px"
                 />
                 <div className="absolute inset-0 bg-primary-text/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
